@@ -1,0 +1,18 @@
+.headerImage {
+  display: none;
+}
+@media (max-width: 768px) {
+  .headerImage {
+    display: block;
+    content: url("../../assets/images/headerMobile.png");
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .headerImage {
+    display: block;
+    content: url("../../assets/images/headerDesktop.png");
+    margin: 0 auto;
+  }
+}
