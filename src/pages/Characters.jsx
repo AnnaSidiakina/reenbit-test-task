@@ -7,6 +7,17 @@ const Characters = () => {
   const [charactersList, setCharactersList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") ?? "";
+  const sortedList = charactersList.sort((firstChar, secondChar) => {
+    const firstCharName = firstChar.name.toLowerCase();
+    const secondCharName = secondChar.name.toLowerCase();
+    if (firstCharName < secondCharName) {
+      return -1;
+    }
+    if (firstCharName > secondCharName) {
+      return 1;
+    }
+    return 0;
+  });
 
   useEffect(() => {
     // if (query === "") {
@@ -28,9 +39,7 @@ const Characters = () => {
   console.log("charactersList", charactersList);
 
   return (
-    <div>
-      {charactersList && <CharactersList characters={charactersList} />}
-    </div>
+    <div>{charactersList && <CharactersList characters={sortedList} />}</div>
   );
 };
 export default Characters;
