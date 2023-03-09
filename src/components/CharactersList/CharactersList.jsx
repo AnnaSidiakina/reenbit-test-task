@@ -11,8 +11,14 @@ const CharactersList = ({ characters }) => {
       <ul className={styles.list}>
         {characters.map(({ id, name, species, image }) => (
           <li className={styles.item} key={id}>
-            <Link to={`character/${id}`} state={{ from: location }}>
-              <img className={styles.image} src={image} alt={name} />
+            <Link
+              className={styles.link}
+              to={`character/${id}`}
+              state={{ from: location }}
+            >
+              <div className={styles.imageContainer}>
+                <img className={styles.image} src={image} alt={name} />
+              </div>
               <div className={styles.infoContainer}>
                 <p className={styles.name}>{name}</p>
                 <p className={styles.species}>{species}</p>

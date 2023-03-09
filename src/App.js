@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Characters />} />
-          <Route path="/character/:characterId" element={<OneCharacter />} />
         </Route>
+        <Route path="/character/:characterId" element={<OneCharacter />} />
       </Routes>
     </div>
   );

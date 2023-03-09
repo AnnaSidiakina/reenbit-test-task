@@ -1,17 +1,23 @@
-.headerImage {
-  display: none;
+.imgContainer {
+  width: 312px;
+  height: 104px;
+  margin-top: 92px;
 }
-@media (max-width: 768px) {
-  .headerImage {
-    display: block;
-    content: url("../../assets/images/headerMobile.png");
-    margin: 0 auto;
+@media (min-width: 769px) {
+  .imgContainer {
+    width: 600px;
+    height: 200px;
+    margin: 86px auto 0 auto;
   }
+}
+
+.headerImage {
+  content: url("../../assets/images/headerMobile.png");
+  margin: 0 auto;
 }
 
 @media (min-width: 769px) {
   .headerImage {
-    display: block;
     content: url("../../assets/images/headerDesktop.png");
     margin: 0 auto;
   }

@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  margin-top: 25px;
+}
+.linkBack {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 1);
+  margin-left: 12px;
+}
+.linkBack::before {
+  content: url("../../assets/images/arrow_back_24px.svg");
+  margin-right: 12px;
+}

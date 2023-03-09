@@ -5,7 +5,9 @@ import styles from "./Header.module.css";
 const Header = () => {
   return (
     <Container>
-      <img className={styles.headerImage} src="" alt="Rick and Morty" />
+      <div className={styles.imgContainer}>
+        <img className={styles.headerImage} src="" alt="Rick and Morty" />
+      </div>
     </Container>
   );
 };
