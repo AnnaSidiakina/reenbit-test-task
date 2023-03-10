@@ -11,6 +11,7 @@ const SearchForm = () => {
           <img className={styles.icon} src={searchIcon} alt="Search icon" />
           <input
             type="search"
+            name="search"
             placeholder="Filter by name..."
             className={styles.input}
           />

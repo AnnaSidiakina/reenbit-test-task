@@ -2,44 +2,48 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchCharactersByQuery, fetchCharacters } from "../API/api";
 import CharactersList from "../components/CharactersList/CharactersList";
+import Header from "../components/Header/Header";
+import SearchForm from "../components/SearchForm/SearchForm";
+import { useSortedList } from "../hooks/useSortedList";
+import { useGetCharactersQuery } from "../redux/characters/charactersSlice";
 
 const Characters = () => {
-  const [charactersList, setCharactersList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") ?? "";
-  const sortedList = charactersList.sort((firstChar, secondChar) => {
-    const firstCharName = firstChar.name.toLowerCase();
-    const secondCharName = secondChar.name.toLowerCase();
-    if (firstCharName < secondCharName) {
-      return -1;
-    }
-    if (firstCharName > secondCharName) {
-      return 1;
-    }
-    return 0;
+  //   const query = searchParams.get("query") ?? "";
+  const page = 1;
+  const query = "";
+  //   const { data } = useGetCharactersQuery({ query, page });
+  //   const { characters, pages } = data;
+
+  const { data, isFetching, error } = useSortedList({
+    query,
+    page,
   });
+  console.log("data", data);
 
-  useEffect(() => {
-    // if (query === "") {
-    //   return;
-    // }
-    async function addCharactersListByQuery() {
-      try {
-        const data = await fetchCharacters();
-        setCharactersList([...data.results]);
+  //   useEffect(() => {
+  //     // if (query === "") {
+  //     //   return;
+  //     // }
+  //     async function addCharactersListByQuery() {
+  //       try {
+  //         const data = await fetchCharacters();
+  //         setCharactersList([...data.results]);
 
-        console.log(data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    addCharactersListByQuery();
-  }, []);
-
-  console.log("charactersList", charactersList);
+  //         console.log(data);
+  //       } catch (error) {
+  //         console.log(error.message);
+  //       }
+  //     }
+  //     addCharactersListByQuery();
+  //   }, []);
 
   return (
-    <div>{charactersList && <CharactersList characters={sortedList} />}</div>
+    <div>
+      <Header />
+      <SearchForm />
+      {data && <CharactersList characters={data.characters} />}
+    </div>
   );
 };
 export default Characters;

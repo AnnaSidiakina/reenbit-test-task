@@ -1,5 +1,4 @@
 import React, { lazy } from "react";
-// import  Characters  from "./pages/Characters.jsx";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 
@@ -11,8 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Characters />} />
+          <Route path="/character/:characterId" element={<OneCharacter />} />
         </Route>
-        <Route path="/character/:characterId" element={<OneCharacter />} />
       </Routes>
     </div>
   );
