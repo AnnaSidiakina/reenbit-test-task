@@ -1,43 +1,91 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchCharactersByQuery, fetchCharacters } from "../API/api";
 import CharactersList from "../components/CharactersList/CharactersList";
 import Header from "../components/Header/Header";
 import SearchForm from "../components/SearchForm/SearchForm";
-import { useSortedList } from "../hooks/useSortedList";
-import { useGetCharactersQuery } from "../redux/characters/charactersSlice";
 import Paginate from "../components/Pagination/Pagination";
+import { topScroll } from "../functions/topScroll";
+import Loader from "../components/Loader/Loader";
+import { toast } from "react-toastify";
+import { useGetCharactersQuery } from "../redux/characters/charactersSlice";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 
 const Characters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get("query") ?? "";
-  const page = Number(searchParams.get("page") ?? 1);
-  //   const page = 1;
-  //   const query = "";
-  //   const { data } = useGetCharactersQuery({ query, page });
-  //   const { characters, pages } = data;
+  const query = searchParams.get("name") ?? "";
+  const pageParam = Number(searchParams.get("page") ?? 1);
 
-  const { data, isFetching, error } = useSortedList({
+  const [inputValue, setInputValue] = useState(query || "");
+  const [page, setPage] = useState(pageParam || 1);
+
+  const { data, isFetching, error } = useGetCharactersQuery({
     query,
     page,
   });
-  console.log("data", data);
+
+  const sortedList = data?.characters
+    ? [...data.characters].sort((prevItem, nextItem) => {
+        const firstItem = prevItem.name.toLowerCase();
+        const secondItem = nextItem.name.toLowerCase();
+        if (firstItem < secondItem) {
+          return -1;
+        }
+        if (firstItem > secondItem) {
+          return 1;
+        }
+        return 0;
+      })
+    : [];
+  console.log(sortedList);
 
   const handleClick = (e) => {
+    setPage(e.selected + 1);
     if (query) {
       setSearchParams({ name: query, page: e.selected + 1 });
+      topScroll();
     }
     if (query === "") {
       setSearchParams({ page: e.selected + 1 });
+      topScroll();
     }
+  };
+
+  const handleChange = (e) => {
+    const value = e.currentTarget.value;
+    setInputValue(value);
+    if (value === "") {
+      setSearchParams({ page: 1 });
+      setPage(1);
+    }
+  };
+  console.log("page", page);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchForm = e.currentTarget.elements.search.value;
+    if (searchForm === "") {
+      toast.error("Please, enter your request");
+    }
+    if (page > 1) {
+      setPage(1);
+    }
+    setSearchParams(
+      searchForm !== "" ? { name: searchForm, page: 1 } : { page: page }
+    );
+    console.log("query", query);
   };
 
   return (
     <div>
       <Header />
-      <SearchForm />
-      {data && <CharactersList characters={data.characters} />}
-      {data && data.pages > 1 && (
+      <SearchForm
+        handleSubmit={handleSubmit}
+        value={inputValue}
+        handleChange={handleChange}
+      />
+      {error && <ErrorMessage />}
+      {isFetching && <Loader />}
+      {data && !error && <CharactersList characters={sortedList} />}
+      {data && data.pages > 1 && !error && (
         <Paginate total={data.pages} handleClick={handleClick} page={page} />
       )}
     </div>

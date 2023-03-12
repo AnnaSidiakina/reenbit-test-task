@@ -6,9 +6,9 @@ export const charactersApi = createApi({
   tagTypes: ["Character"],
   endpoints: (builder) => ({
     getCharacters: builder.query({
-      query: ({ search, page }) =>
-        search
-          ? `https://rickandmortyapi.com/api/character/?name=${search}&page=${page}`
+      query: ({ query, page }) =>
+        query
+          ? `https://rickandmortyapi.com/api/character/?name=${query}&page=${page}`
           : `https://rickandmortyapi.com/api/character/?page=${page}`,
       providesTags: ["Character"],
       transformResponse: (response) => ({

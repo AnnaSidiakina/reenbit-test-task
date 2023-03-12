@@ -1,0 +1,19 @@
+.container {
+  margin: 40px auto;
+  width: 312px;
+  text-align: center;
+}
+@media (min-width: 769px) {
+  .container {
+    width: 600px;
+  }
+}
+.message {
+  font-size: 20px;
+  line-height: 2;
+}
+@media (min-width: 769px) {
+  .message {
+    font-size: 32px;
+  }
+}

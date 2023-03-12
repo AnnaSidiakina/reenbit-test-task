@@ -21,14 +21,6 @@
   position: relative;
 }
 
-.icon {
-  position: absolute;
-  width: 17px;
-  height: 17px;
-  top: 3px;
-  left: 18px;
-}
-
 .input {
   width: 100%;
   padding: 16px 16px 16px 48px;
@@ -40,4 +32,15 @@
 .input::placeholder {
   color: rgba(0, 0, 0, 0.5);
   font-size: 16px;
+}
+.button {
+  position: absolute;
+  top: 2px;
+  left: 14px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.button:hover .icon {
+  fill: rgb(133, 225, 219);
 }

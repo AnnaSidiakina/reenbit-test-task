@@ -1,6 +1,7 @@
 .container {
   max-width: 600px;
-  /* text-align: center; */
+  display: flex;
+  justify-content: center;
   margin: 40px auto;
 }
 .paginate {
@@ -19,7 +20,7 @@
   background-color: rgb(172, 171, 165);
 }
 .active {
-  background-color: rgb(145, 182, 187);
+  background-color: rgb(133, 225, 219);
 }
 .link {
   display: block;

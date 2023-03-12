@@ -1,20 +1,24 @@
 import React from "react";
 import Container from "../Container/Container";
 import styles from "./SearchForm.module.css";
-import searchIcon from "../../assets/images/search.svg";
+import { AiOutlineSearch } from "react-icons/ai";
 
-const SearchForm = () => {
+const SearchForm = ({ handleSubmit, value, handleChange }) => {
   return (
     <Container>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
-          <img className={styles.icon} src={searchIcon} alt="Search icon" />
           <input
             type="search"
             name="search"
             placeholder="Filter by name..."
             className={styles.input}
+            onChange={handleChange}
+            defaultValue={value}
           />
+          <button className={styles.button} type="submit">
+            <AiOutlineSearch className={styles.icon} size="20px" />
+          </button>
         </label>
       </form>
     </Container>
