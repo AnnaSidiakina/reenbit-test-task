@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import CharacterInfo from "../components/CharacterInfo/CharacterInfo";
 import { useGetCharacterByIdQuery } from "../redux/characters/charactersSlice";
 import Loader from "../components/Loader/Loader";
+import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 
 const OneCharacter = () => {
   const { characterId } = useParams();
@@ -11,6 +12,7 @@ const OneCharacter = () => {
 
   return (
     <>
+      {error && <ErrorMessage />}
       {isFetching && <Loader />}
       {data && <CharacterInfo characterInfo={data} />}
     </>

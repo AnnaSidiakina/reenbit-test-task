@@ -36,7 +36,6 @@ const Characters = () => {
         return 0;
       })
     : [];
-  console.log(sortedList);
 
   const handleClick = (e) => {
     setPage(e.selected + 1);
@@ -58,7 +57,6 @@ const Characters = () => {
       setPage(1);
     }
   };
-  console.log("page", page);
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchForm = e.currentTarget.elements.search.value;
@@ -71,7 +69,6 @@ const Characters = () => {
     setSearchParams(
       searchForm !== "" ? { name: searchForm, page: 1 } : { page: page }
     );
-    console.log("query", query);
   };
 
   return (
