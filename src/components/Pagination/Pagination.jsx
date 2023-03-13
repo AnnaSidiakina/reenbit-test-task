@@ -11,7 +11,7 @@ const Paginate = ({ total, handleClick, page }) => {
           pageCount={total}
           onPageChange={handleClick}
           forcePage={page - 1}
-          pageRangeDisplayed={4}
+          pageRangeDisplayed={3}
           marginPagesDisplayed={2}
           pageClassName={styles.page}
           pageLinkClassName={styles.link}
