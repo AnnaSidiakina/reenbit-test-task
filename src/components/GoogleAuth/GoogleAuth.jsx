@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { GoogleLogin } from "@react-oauth/google";
-import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserIsLoggedIn } from "../../redux/auth/selectors";
 import { selectUser } from "../../redux/auth/selectors";

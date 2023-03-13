@@ -2,6 +2,7 @@ import React from "react";
 import GoBackButton from "../GoBackButton/GoBackButton";
 import styles from "./CharacterInfo.module.css";
 import Container from "../Container/Container";
+import PropTypes from "prop-types";
 
 const CharacterInfo = ({ characterInfo }) => {
   return (
@@ -43,5 +44,7 @@ const CharacterInfo = ({ characterInfo }) => {
     </>
   );
 };
-
+CharacterInfo.propTypes = {
+  characterInfo: PropTypes.object.isRequired,
+};
 export default CharacterInfo;

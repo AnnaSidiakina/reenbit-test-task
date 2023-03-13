@@ -18,11 +18,13 @@ const Characters = () => {
   const [inputValue, setInputValue] = useState(query || "");
   const [page, setPage] = useState(pageParam || 1);
 
+  // get characters
   const { data, isFetching, error } = useGetCharactersQuery({
     query,
     page,
   });
 
+  // sort characters by name
   const sortedList = data?.characters
     ? [...data.characters].sort((prevItem, nextItem) => {
         const firstItem = prevItem.name.toLowerCase();
@@ -37,6 +39,7 @@ const Characters = () => {
       })
     : [];
 
+  // handle page click
   const handleClick = (e) => {
     setPage(e.selected + 1);
     if (query) {
@@ -49,6 +52,7 @@ const Characters = () => {
     }
   };
 
+  // handle search input change
   const handleChange = (e) => {
     const value = e.currentTarget.value;
     setInputValue(value);
@@ -57,6 +61,8 @@ const Characters = () => {
       setPage(1);
     }
   };
+
+  // handle submit search button
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchForm = e.currentTarget.elements.search.value;

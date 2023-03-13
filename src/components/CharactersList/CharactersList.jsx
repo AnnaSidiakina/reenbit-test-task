@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import Container from "../Container/Container";
 import styles from "./CharacterList.module.css";
+import PropTypes from "prop-types";
 
 const CharactersList = ({ characters }) => {
   const location = useLocation();
@@ -29,5 +30,8 @@ const CharactersList = ({ characters }) => {
       </ul>
     </Container>
   );
+};
+CharactersList.propTypes = {
+  characters: PropTypes.array.isRequired,
 };
 export default CharactersList;

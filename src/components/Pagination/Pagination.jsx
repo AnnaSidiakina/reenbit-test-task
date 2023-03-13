@@ -1,6 +1,7 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.css";
 import Container from "../Container/Container";
+import PropTypes from "prop-types";
 
 const Paginate = ({ total, handleClick, page }) => {
   return (
@@ -31,5 +32,10 @@ const Paginate = ({ total, handleClick, page }) => {
       </div>
     </Container>
   );
+};
+Paginate.propTypes = {
+  total: PropTypes.number.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired,
 };
 export default Paginate;

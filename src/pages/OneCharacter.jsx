@@ -9,7 +9,6 @@ const OneCharacter = () => {
   const { characterId } = useParams();
 
   const { data, isFetching, error } = useGetCharacterByIdQuery(characterId);
-
   return (
     <>
       {error && <ErrorMessage />}

@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../Container/Container";
 import styles from "./SearchForm.module.css";
 import { AiOutlineSearch } from "react-icons/ai";
+import PropTypes from "prop-types";
 
 const SearchForm = ({ handleSubmit, value, handleChange }) => {
   return (
@@ -24,5 +25,9 @@ const SearchForm = ({ handleSubmit, value, handleChange }) => {
     </Container>
   );
 };
-
+SearchForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string,
+};
 export default SearchForm;
