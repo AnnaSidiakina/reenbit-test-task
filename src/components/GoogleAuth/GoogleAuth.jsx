@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { GoogleLogin } from "@react-oauth/google";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUserIsLoggedIn } from "../../redux/auth/selectors";
 import { selectUser } from "../../redux/auth/selectors";
 import { login, logout } from "../../redux/auth/auth";
+import { FcGoogle } from "react-icons/fc";
+import styles from "./GoogleAuth.module.css";
+import Container from "../Container/Container";
 
 const GoogleAuth = () => {
   const user = useSelector(selectUser);
@@ -30,29 +33,34 @@ const GoogleAuth = () => {
         .catch((error) => {
           return { data: null, error };
         });
-      console.log(response.data);
       const { email, name } = response.data;
       dispatch(login({ email, name }));
     },
     onError: (error) => console.log("Something went wrong", error),
   });
-  console.log(isLoggedIn);
 
   const googleLogout = () => {
     dispatch(logout());
   };
 
   return (
-    <>
-      {!isLoggedIn ? (
-        <button onClick={() => googleLogin()}>Sign in with Google</button>
-      ) : (
-        <>
-          <p>{user.name}</p>
-          <button onClick={googleLogout}>Log out</button>
-        </>
-      )}
-    </>
+    <Container>
+      <div className={styles.container}>
+        {!isLoggedIn ? (
+          <button className={styles.button} onClick={() => googleLogin()}>
+            <FcGoogle />
+            <span className={styles.span}>Sign in with Google</span>
+          </button>
+        ) : (
+          <div className={styles.logoutContainer}>
+            <p className={styles.name}>{user.name}</p>
+            <button className={styles.button} onClick={googleLogout}>
+              Log out
+            </button>
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 export default GoogleAuth;

@@ -1,13 +1,13 @@
 .imgContainer {
   width: 312px;
   height: 104px;
-  margin-top: 92px;
+  margin-top: 52px;
 }
 @media (min-width: 769px) {
   .imgContainer {
     width: 600px;
     height: 200px;
-    margin: 86px auto 0 auto;
+    margin: 46px auto 0 auto;
   }
 }
 

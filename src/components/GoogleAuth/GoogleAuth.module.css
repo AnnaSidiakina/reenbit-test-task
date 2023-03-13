@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: end;
+  margin: 40px auto 0;
+}
+
+.button {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  border-color: transparent;
+}
+.button:hover,
+.button:focus {
+  background-color: rgb(133, 225, 219);
+}
+.span {
+  margin-left: 5px;
+  vertical-align: top;
+}
+.logoutContainer {
+  display: flex;
+  align-items: center;
+}
+.name {
+  margin-right: 10px;
+  font-weight: 400;
+  size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
